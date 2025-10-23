@@ -12,10 +12,12 @@ the project was build with the following:
 - Home Screen (fetch from Persistence Swift Data, show list of medals).
 - Settings Screen (show appearance option, logout captabilities).
 - Medal Lisst (local persistence).
-  
-<img src="/images/medals_list.jpeg" width=40%>
-
 - testing, mocks, & dependency injection
+  
+## Screenshots
+<img src="MedalsAT/images/medals_list.jpeg" width="300" alt="Main Screen">
+
+
 
 
 
