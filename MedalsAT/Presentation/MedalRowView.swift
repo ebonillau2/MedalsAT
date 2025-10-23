@@ -35,6 +35,14 @@ struct MedalRowView: View {
     .padding()
     .background(RoundedRectangle(cornerRadius: 12)
       .fill(Color(hex: medal.backgroundColor)))
+    .overlay(
+      ZStack {
+        if showConfetti {
+          ConfettiView()
+            .transition(.scale)
+        }
+      }
+    )
     .onReceive(NotificationCenter.default.publisher(for: .medalLeveledUp)) { notif in
       if notif.object as? String == medal.id {
         withAnimation(.spring()) {
