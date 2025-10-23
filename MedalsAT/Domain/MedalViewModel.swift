@@ -17,6 +17,7 @@ final class MedalViewModel: ObservableObject {
   var modelContext: ModelContext
   var persistace: MedalsPersistace
   private var updateTask: Task<Void, Never>? = nil
+  private var tapCount = 0
   
   init(modelContext: ModelContext, persistace: MedalsPersistace = MedalsPersistaceImp()) {
     self.modelContext = modelContext
@@ -61,7 +62,7 @@ final class MedalViewModel: ObservableObject {
           for medal in medals {
             guard medal.level < medal.maxLevel else { continue }
             
-            let randomIncrement = Int.random(in: 0...10)
+            let randomIncrement = Int.random(in: 0...25)
             medal.points += randomIncrement
             
             if medal.points >= 100 {
@@ -78,9 +79,22 @@ final class MedalViewModel: ObservableObject {
               )
             }
           }
-          try? modelContext.save()
+          do {
+            try modelContext.save()
+          } catch {
+            print("Error Saving Model \(error.localizedDescription)")
+          }
         }
       }
+    }
+  }
+  
+  func resetDataIfNeeded() {
+    tapCount += 1
+    if tapCount == 5 {
+      persistace.removeAllMedals(context: modelContext)
+      medals = persistace.fetchMedals(context: modelContext)
+      tapCount = 0
     }
   }
   
