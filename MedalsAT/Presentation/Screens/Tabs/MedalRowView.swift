@@ -20,6 +20,7 @@ struct MedalRowView: View {
           .foregroundStyle(Color(hex: medal.progressColor))
         HStack {
           Text("LVL \(medal.level)")
+            .foregroundStyle(Color.black)
           ProgressView(value: Float(medal.points),
                        total: 100)
             .progressViewStyle(BarProgressStyle(color:Color(hex: medal.progressColor),
@@ -31,6 +32,7 @@ struct MedalRowView: View {
       Spacer()
       Text("\(medal.points)/100")
         .font(.caption)
+        .foregroundStyle(Color.black)
     }
     .padding()
     .background(RoundedRectangle(cornerRadius: 12)

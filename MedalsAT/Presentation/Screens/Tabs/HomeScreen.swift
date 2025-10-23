@@ -11,7 +11,7 @@ import SwiftData
 struct HomeScreen: View {
   @Environment(\.modelContext) var modelContext
   @StateObject var viewModel: MedalViewModel
-  
+
   init(modelContext: ModelContext) {
     _viewModel = StateObject(wrappedValue: MedalViewModel(modelContext: modelContext))
   }
@@ -26,9 +26,13 @@ struct HomeScreen: View {
       .listStyle(.insetGrouped)
       .navigationTitle("Perfil de Usuario")
     }
-//    .onDisappear {
-//      viewModel.medals
-//    }
+    .toast(isPresented: $viewModel.showToast, message: "Perfil Presionado")
+    .onAppear {
+      viewModel.startObservingChanges()
+    }
+    .onDisappear {
+      viewModel.stopUpdatingMedals()
+    }
   }
 }
 
