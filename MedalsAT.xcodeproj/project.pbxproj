@@ -14,19 +14,11 @@
 			remoteGlobalIDString = 7F0622B42EA9A95E006ED1D0;
 			remoteInfo = MedalsAT;
 		};
-		7F0622CF2EA9A960006ED1D0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7F0622AD2EA9A95E006ED1D0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7F0622B42EA9A95E006ED1D0;
-			remoteInfo = MedalsAT;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		7F0622B52EA9A95E006ED1D0 /* MedalsAT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedalsAT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F0622C42EA9A960006ED1D0 /* MedalsATTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedalsATTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F0622CE2EA9A960006ED1D0 /* MedalsATUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedalsATUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -53,11 +45,6 @@
 			path = MedalsATTests;
 			sourceTree = "<group>";
 		};
-		7F0622D12EA9A960006ED1D0 /* MedalsATUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MedalsATUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,13 +62,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7F0622CB2EA9A960006ED1D0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -90,7 +70,6 @@
 			children = (
 				7F0622B72EA9A95E006ED1D0 /* MedalsAT */,
 				7F0622C72EA9A960006ED1D0 /* MedalsATTests */,
-				7F0622D12EA9A960006ED1D0 /* MedalsATUITests */,
 				7F0622B62EA9A95E006ED1D0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -100,7 +79,6 @@
 			children = (
 				7F0622B52EA9A95E006ED1D0 /* MedalsAT.app */,
 				7F0622C42EA9A960006ED1D0 /* MedalsATTests.xctest */,
-				7F0622CE2EA9A960006ED1D0 /* MedalsATUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,29 +132,6 @@
 			productReference = 7F0622C42EA9A960006ED1D0 /* MedalsATTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		7F0622CD2EA9A960006ED1D0 /* MedalsATUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7F0622DE2EA9A960006ED1D0 /* Build configuration list for PBXNativeTarget "MedalsATUITests" */;
-			buildPhases = (
-				7F0622CA2EA9A960006ED1D0 /* Sources */,
-				7F0622CB2EA9A960006ED1D0 /* Frameworks */,
-				7F0622CC2EA9A960006ED1D0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7F0622D02EA9A960006ED1D0 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				7F0622D12EA9A960006ED1D0 /* MedalsATUITests */,
-			);
-			name = MedalsATUITests;
-			packageProductDependencies = (
-			);
-			productName = MedalsATUITests;
-			productReference = 7F0622CE2EA9A960006ED1D0 /* MedalsATUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -191,10 +146,6 @@
 						CreatedOnToolsVersion = 26.0.1;
 					};
 					7F0622C32EA9A960006ED1D0 = {
-						CreatedOnToolsVersion = 26.0.1;
-						TestTargetID = 7F0622B42EA9A95E006ED1D0;
-					};
-					7F0622CD2EA9A960006ED1D0 = {
 						CreatedOnToolsVersion = 26.0.1;
 						TestTargetID = 7F0622B42EA9A95E006ED1D0;
 					};
@@ -219,7 +170,6 @@
 			targets = (
 				7F0622B42EA9A95E006ED1D0 /* MedalsAT */,
 				7F0622C32EA9A960006ED1D0 /* MedalsATTests */,
-				7F0622CD2EA9A960006ED1D0 /* MedalsATUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -233,13 +183,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7F0622C22EA9A960006ED1D0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7F0622CC2EA9A960006ED1D0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -263,13 +206,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7F0622CA2EA9A960006ED1D0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -277,11 +213,6 @@
 			isa = PBXTargetDependency;
 			target = 7F0622B42EA9A95E006ED1D0 /* MedalsAT */;
 			targetProxy = 7F0622C52EA9A960006ED1D0 /* PBXContainerItemProxy */;
-		};
-		7F0622D02EA9A960006ED1D0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7F0622B42EA9A95E006ED1D0 /* MedalsAT */;
-			targetProxy = 7F0622CF2EA9A960006ED1D0 /* PBXContainerItemProxy */;
 		};
 		7F2B5C832EA9E58D007C46AC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -527,46 +458,6 @@
 			};
 			name = "Release-Dev";
 		};
-		7F0622DF2EA9A960006ED1D0 /* Debug-Dev */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U72P8JQMB8;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pe.nexendev.MedalsATUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MedalsAT;
-			};
-			name = "Debug-Dev";
-		};
-		7F0622E02EA9A960006ED1D0 /* Release-Dev */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U72P8JQMB8;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pe.nexendev.MedalsATUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MedalsAT;
-			};
-			name = "Release-Dev";
-		};
 		7F115F162EA9FCA8002F840E /* Debug-QA */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 7F0622B72EA9A95E006ED1D0 /* MedalsAT */;
@@ -685,26 +576,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MedalsAT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MedalsAT";
-			};
-			name = "Debug-QA";
-		};
-		7F115F192EA9FCA8002F840E /* Debug-QA */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U72P8JQMB8;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pe.nexendev.MedalsATUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MedalsAT;
 			};
 			name = "Debug-QA";
 		};
@@ -829,26 +700,6 @@
 			};
 			name = "Debug-Prod";
 		};
-		7F115F1D2EA9FCB0002F840E /* Debug-Prod */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U72P8JQMB8;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pe.nexendev.MedalsATUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MedalsAT;
-			};
-			name = "Debug-Prod";
-		};
 		7F115F1E2EA9FCBC002F840E /* Release-QA */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = 7F0622B72EA9A95E006ED1D0 /* MedalsAT */;
@@ -967,26 +818,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MedalsAT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MedalsAT";
-			};
-			name = "Release-QA";
-		};
-		7F115F212EA9FCBC002F840E /* Release-QA */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U72P8JQMB8;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pe.nexendev.MedalsATUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MedalsAT;
 			};
 			name = "Release-QA";
 		};
@@ -1111,26 +942,6 @@
 			};
 			name = "Release-Prod";
 		};
-		7F115F252EA9FCCC002F840E /* Release-Prod */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = U72P8JQMB8;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pe.nexendev.MedalsATUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MedalsAT;
-			};
-			name = "Release-Prod";
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1169,19 +980,6 @@
 				7F115F202EA9FCBC002F840E /* Release-QA */,
 				7F115F242EA9FCCC002F840E /* Release-Prod */,
 				7F0622DD2EA9A960006ED1D0 /* Release-Dev */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release-Dev";
-		};
-		7F0622DE2EA9A960006ED1D0 /* Build configuration list for PBXNativeTarget "MedalsATUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7F0622DF2EA9A960006ED1D0 /* Debug-Dev */,
-				7F115F1D2EA9FCB0002F840E /* Debug-Prod */,
-				7F115F192EA9FCA8002F840E /* Debug-QA */,
-				7F115F212EA9FCBC002F840E /* Release-QA */,
-				7F115F252EA9FCCC002F840E /* Release-Prod */,
-				7F0622E02EA9A960006ED1D0 /* Release-Dev */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release-Dev";
