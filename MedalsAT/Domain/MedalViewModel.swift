@@ -1,6 +1,6 @@
 //
 //  MedalViewModel.swift
-//  MedalsAT
+//  Medals_AT
 //
 //  Created by Enrique Bonilla on 22/10/25.
 //
@@ -18,16 +18,12 @@ final class MedalViewModel: ObservableObject {
   var persistace: MedalsPersistace
   private var updateTask: Task<Void, Never>? = nil
   
-  init(modelContext: ModelContext, persistace: MedalsPersistace) {
+  init(modelContext: ModelContext, persistace: MedalsPersistace = MedalsPersistaceImp()) {
     self.modelContext = modelContext
     self.persistace = persistace
     medals = persistace.fetchMedals(context: modelContext)
     observeAppLifecycle()
     startUpdatingMedals()
-  }
-  
-  convenience init(modelContext: ModelContext) {
-    self.init(modelContext: modelContext, persistace: MedalsPersistaceImp())
   }
   
   private func observeAppLifecycle() {
