@@ -10,7 +10,8 @@ import UIKit
 
 struct MedalRowView: View {
   var medal: Medal
-
+  @State private var showConfetti = false
+  
   var body: some View {
     HStack {
       VStack(alignment: .leading) {
@@ -34,6 +35,18 @@ struct MedalRowView: View {
     .padding()
     .background(RoundedRectangle(cornerRadius: 12)
       .fill(Color(hex: medal.backgroundColor)))
+    .onReceive(NotificationCenter.default.publisher(for: .medalLeveledUp)) { notif in
+      if notif.object as? String == medal.id {
+        withAnimation(.spring()) {
+          showConfetti = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+          withAnimation {
+            showConfetti = false
+          }
+        }
+      }
+    }
   }
 }
 
