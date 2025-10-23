@@ -10,7 +10,7 @@ import Combine
 
 final class TabsCoordinator: RouterProtocol {
   var path: [Route] = []
-  
+
   @ViewBuilder
   func destination(for screen: Route) -> some View {
     switch screen {

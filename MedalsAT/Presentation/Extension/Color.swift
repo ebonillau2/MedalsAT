@@ -12,23 +12,23 @@ extension Color {
     // Limpia el string de espacios y #
     var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines)
     hexString = hexString.replacingOccurrences(of: "#", with: "")
-    
+
     var rgbValue: UInt64 = 0
     Scanner(string: hexString).scanHexInt64(&rgbValue)
-    
-    let r, g, b: Double
-    
+
+    let red, green, blue: Double
+
     switch hexString.count {
     case 6: // RGB
-      r = Double((rgbValue & 0xFF0000) >> 16) / 255
-      g = Double((rgbValue & 0x00FF00) >> 8) / 255
-      b = Double(rgbValue & 0x0000FF) / 255
+      red = Double((rgbValue & 0xFF0000) >> 16) / 255
+      green = Double((rgbValue & 0x00FF00) >> 8) / 255
+      blue = Double(rgbValue & 0x0000FF) / 255
     default:
-      r = 0
-      g = 0
-      b = 0
+      red = 0
+      green = 0
+      blue = 0
     }
-    
-    self.init(red: r, green: g, blue: b)
+
+    self.init(red: red, green: green, blue: blue)
   }
 }

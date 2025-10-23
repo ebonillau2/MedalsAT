@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AuthenticationRoute: View {
   @StateObject private var coordinator = AuthCoordinator()
-  
+
   var body: some View {
     NavigationStack(path: $coordinator.path) {
       coordinator.destination(for: .login)

@@ -27,7 +27,7 @@ class Medal {
   var nextLevelGoal: String
   var isLocked: Bool
   var animationType: String
-  
+
   init(
     id: String = UUID().uuidString,
     name: String,

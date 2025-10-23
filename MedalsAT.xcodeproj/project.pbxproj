@@ -29,9 +29,22 @@
 		7F0622CE2EA9A960006ED1D0 /* MedalsATUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedalsATUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		7F5FCEF82EA9EE300058A415 /* Exceptions for "MedalsAT" folder in "MedalsAT" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 7F0622B42EA9A95E006ED1D0 /* MedalsAT */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		7F0622B72EA9A95E006ED1D0 /* MedalsAT */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				7F5FCEF82EA9EE300058A415 /* Exceptions for "MedalsAT" folder in "MedalsAT" target */,
+			);
 			path = MedalsAT;
 			sourceTree = "<group>";
 		};
@@ -106,6 +119,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7F2B5C832EA9E58D007C46AC /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				7F0622B72EA9A95E006ED1D0 /* MedalsAT */,
@@ -195,6 +209,9 @@
 			);
 			mainGroup = 7F0622AC2EA9A95E006ED1D0;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7F2B5C372EA9E493007C46AC /* XCRemoteSwiftPackageReference "SwiftLint" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7F0622B62EA9A95E006ED1D0 /* Products */;
 			projectDirPath = "";
@@ -265,6 +282,10 @@
 			isa = PBXTargetDependency;
 			target = 7F0622B42EA9A95E006ED1D0 /* MedalsAT */;
 			targetProxy = 7F0622CF2EA9A960006ED1D0 /* PBXContainerItemProxy */;
+		};
+		7F2B5C832EA9E58D007C46AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 7F2B5C822EA9E58D007C46AC /* SwiftLintBuildToolPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -400,9 +421,9 @@
 				DEVELOPMENT_TEAM = U72P8JQMB8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MedalsAT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -432,9 +453,9 @@
 				DEVELOPMENT_TEAM = U72P8JQMB8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MedalsAT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -578,6 +599,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7F2B5C372EA9E493007C46AC /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.62.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7F2B5C822EA9E58D007C46AC /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F2B5C372EA9E493007C46AC /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7F0622AD2EA9A95E006ED1D0 /* Project object */;
 }

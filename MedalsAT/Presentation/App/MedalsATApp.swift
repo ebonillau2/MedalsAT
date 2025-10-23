@@ -10,7 +10,7 @@ import SwiftData
 import Combine
 
 @main
-struct Medals_ATApp: App {
+struct MedalsATApp: App {
 
   var body: some Scene {
     WindowGroup {
