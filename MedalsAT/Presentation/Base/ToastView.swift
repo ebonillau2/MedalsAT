@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ToastView: View {
   var message: String
-  
+
   var body: some View {
     Text(message)
       .font(.subheadline)

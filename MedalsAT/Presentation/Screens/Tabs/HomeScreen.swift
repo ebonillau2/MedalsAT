@@ -15,7 +15,7 @@ struct HomeScreen: View {
   init(modelContext: ModelContext) {
     _viewModel = StateObject(wrappedValue: MedalViewModel(modelContext: modelContext))
   }
-  
+
   var body: some View {
 
     NavigationView {
@@ -39,7 +39,7 @@ struct HomeScreen: View {
 // Views
 private extension HomeScreen {
   var topView: some View {
-    HStack(spacing: 12,) {
+    HStack(spacing: 12) {
       Button {
         withAnimation {
           viewModel.resetDataIfNeeded()
@@ -82,7 +82,9 @@ private extension HomeScreen {
 // Temporary container for preview
 let previewContainer: ModelContainer = {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: Medal.self, configurations: config)
+    // swiftlint:disable:next force_try
+    let container = try! ModelContainer(for: Medal.self,
+                                        configurations: config)
     return container
 }()
 

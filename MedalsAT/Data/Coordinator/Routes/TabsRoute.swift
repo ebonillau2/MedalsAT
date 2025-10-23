@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TabsRoute: View {
   @StateObject private var coordinator = TabsCoordinator()
-  
+
   var body: some View {
     NavigationStack(path: $coordinator.path) {
       coordinator.destination(for: .tabs)

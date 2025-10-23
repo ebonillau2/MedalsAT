@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
   @State private var authManager = AuthManager()
-  
+
   var body: some View {
     ZStack {
       if liveSession() {

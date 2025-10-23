@@ -11,7 +11,7 @@ import UIKit
 struct MedalRowView: View {
   var medal: Medal
   @State private var showConfetti = false
-  
+
   var body: some View {
     HStack {
       VStack(alignment: .leading) {
@@ -23,8 +23,7 @@ struct MedalRowView: View {
             .foregroundStyle(Color.black)
           ProgressView(value: Float(medal.points),
                        total: 100)
-            .progressViewStyle(BarProgressStyle(color:Color(hex: medal.progressColor),
-                                                height: 20.0))
+            .progressViewStyle(BarProgressStyle(color: Color(hex: medal.progressColor), height: 20.0))
             .clipShape(RoundedRectangle(cornerRadius: 4))
         }
         .frame(height: 20)
@@ -61,5 +60,6 @@ struct MedalRowView: View {
 }
 
 #Preview {
+  // swiftlint:disable:next line_length
   MedalRowView(medal: Medal(name: "Hábito Constante", detail: "Inicia sesión 7 días seguidos", icon: "medal3.png", category: "Rutina", rarity: "Common", backgroundColor: "#E6FFE6", progressColor: "#4CAF50", maxLevel: 10, reward: "20 monedas", unlockedAt: "Registro completado", nextLevelGoal: "Suma 50 puntos", animationType: "sparkle"))
 }

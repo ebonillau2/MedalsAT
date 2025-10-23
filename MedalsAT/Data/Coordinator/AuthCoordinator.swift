@@ -11,7 +11,7 @@ import Combine
 final class AuthCoordinator: RouterProtocol, SheetProtocol {
   @Published var sheet: Sheet?
   @Published var path: [Route] = []
-  
+
   @ViewBuilder
   func destination(for screen: Route) -> some View {
     switch screen {
@@ -23,7 +23,7 @@ final class AuthCoordinator: RouterProtocol, SheetProtocol {
       SecondSignupScreen()
     }
   }
-  
+
   @ViewBuilder
   func buildSheet(sheet: Sheet) -> some View {
     switch sheet {
@@ -43,7 +43,7 @@ extension AuthCoordinator {
     var id: String {
       self.rawValue
     }
-    
+
     case forgotPassword
   }
 }

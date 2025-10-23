@@ -17,10 +17,11 @@ final class MedalViewModel: ObservableObject {
 
   var modelContext: ModelContext
   var persistace: MedalsPersistace
-  private var updateTask: Task<Void, Never>? = nil
+  private var updateTask: Task<Void, Never>?
   private var tapCount = 0
-  
-  init(modelContext: ModelContext, persistace: MedalsPersistace = MedalsPersistaceImp()) {
+
+  init(modelContext: ModelContext,
+       persistace: MedalsPersistace = MedalsPersistaceImp()) {
     self.modelContext = modelContext
     self.persistace = persistace
   }
@@ -30,7 +31,7 @@ final class MedalViewModel: ObservableObject {
     observeAppLifecycle()
     startUpdatingMedals()
   }
-  
+
   private func observeAppLifecycle() {
     // Call when scene is about to move to the inactive state
     NotificationCenter.default.addObserver(
@@ -43,7 +44,7 @@ final class MedalViewModel: ObservableObject {
         print("willDeactivateNotification")
       }
     }
-    
+
     // Call when scene becomes active again
     NotificationCenter.default.addObserver(
       forName: UIScene.didActivateNotification,
@@ -56,21 +57,21 @@ final class MedalViewModel: ObservableObject {
       }
     }
   }
-  
+
   private func startUpdatingMedals() {
     guard updateTask == nil else { return }
-    
+
     updateTask = Task {
       while !Task.isCancelled {
         try? await Task.sleep(for: .seconds(1))
-        
+
         await MainActor.run {
           for medal in medals {
             guard medal.level < medal.maxLevel else { continue }
-            
+
             let randomIncrement = Int.random(in: 0...10)
             medal.points += randomIncrement
-            
+
             if medal.points >= 100 {
               medal.points = 0
               medal.level += 1
@@ -78,7 +79,7 @@ final class MedalViewModel: ObservableObject {
                 medal.level = medal.maxLevel
               }
               try? modelContext.save()
-              
+
               NotificationCenter.default.post(
                 name: .medalLeveledUp,
                 object: medal.id
@@ -94,7 +95,7 @@ final class MedalViewModel: ObservableObject {
       }
     }
   }
-  
+
   func resetDataIfNeeded() {
     showToast = true
     Task {
@@ -108,12 +109,12 @@ final class MedalViewModel: ObservableObject {
       tapCount = 0
     }
   }
-  
+
   func stopUpdatingMedals() {
     updateTask?.cancel()
     updateTask = nil
   }
-  
+
   deinit {
     NotificationCenter.default.removeObserver(self)
   }
