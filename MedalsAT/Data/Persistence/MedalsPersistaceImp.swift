@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 struct MedalsPersistaceImp: MedalsPersistace {
-  
+
   /// Load medals only once if them doesn't exist
   func fetchMedals(context: ModelContext) -> [Medal] {
     let descriptor = FetchDescriptor<Medal>()

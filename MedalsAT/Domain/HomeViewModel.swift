@@ -12,8 +12,9 @@ import UIKit
 
 @MainActor
 final class MedalViewModel: ObservableObject {
-  @Published var medals: [Medal]
-  
+  @Published var medals: [Medal] = []
+  @Published var showToast: Bool = false
+
   var modelContext: ModelContext
   var persistace: MedalsPersistace
   private var updateTask: Task<Void, Never>? = nil
@@ -22,6 +23,9 @@ final class MedalViewModel: ObservableObject {
   init(modelContext: ModelContext, persistace: MedalsPersistace = MedalsPersistaceImp()) {
     self.modelContext = modelContext
     self.persistace = persistace
+  }
+
+  func startObservingChanges() {
     medals = persistace.fetchMedals(context: modelContext)
     observeAppLifecycle()
     startUpdatingMedals()
@@ -92,6 +96,11 @@ final class MedalViewModel: ObservableObject {
   }
   
   func resetDataIfNeeded() {
+    showToast = true
+    Task {
+      try? await Task.sleep(for: .seconds(1))
+      showToast = false
+    }
     tapCount += 1
     if tapCount == 5 {
       persistace.removeAllMedals(context: modelContext)
