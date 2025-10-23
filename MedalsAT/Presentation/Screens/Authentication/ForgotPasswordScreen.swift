@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ForgotPasswordScreen: View {
   @EnvironmentObject private var coordinator: AuthCoordinator
-  
+
   var body: some View {
     VStack {
       Text("Recuperar contraseña")
           .font(.largeTitle)
           .fontWeight(.semibold)
           .padding(.bottom, 20)
-      
+
       Image(systemName: "lock.fill")
           .resizable()
           .frame(width: 50, height: 50)
@@ -28,7 +28,6 @@ struct ForgotPasswordScreen: View {
         Text("Regresar")
       }
     }
-    
   }
 }
 

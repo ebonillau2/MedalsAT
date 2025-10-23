@@ -11,7 +11,7 @@ struct SettingsScreen: View {
   @Environment(AuthManager.self) private var authManager
   @AppStorage(UserDefaultsKeys.appearanceTheme)
   private var appearanceTheme: AppearanceTheme = .system
-  
+
   var body: some View {
     NavigationStack {
       Form {
@@ -41,13 +41,13 @@ struct SettingsScreen: View {
   }
 }
 
-//MARK: - helper to save user defaults keys and keep them unique
+// MARK: - helper to save user defaults keys and keep them unique
 
 enum UserDefaultsKeys {
   static let appearanceTheme = "appearanceTheme"
 }
 
-//MARK: - data model for appearance
+// MARK: - data model for appearance
 
 enum AppearanceTheme: String, Identifiable, CaseIterable {
   case system = "Sistema"

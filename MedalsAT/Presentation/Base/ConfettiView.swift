@@ -15,7 +15,7 @@ struct ConfettiView: UIViewRepresentable {
     emitter.emitterPosition = CGPoint(x: UIScreen.main.bounds.midX, y: -10)
     emitter.emitterShape = .line
     emitter.emitterSize = CGSize(width: UIScreen.main.bounds.width, height: 2)
-    
+
     let colors: [UIColor] = [.systemRed, .systemBlue, .systemYellow, .systemGreen, .systemOrange, .systemPurple]
     var cells: [CAEmitterCell] = []
     for color in colors {
@@ -37,9 +37,9 @@ struct ConfettiView: UIViewRepresentable {
     view.layer.addSublayer(emitter)
     return view
   }
-  
+
   func updateUIView(_ uiView: UIView, context: Context) { }
-  
+
   private func makeSquareImage() -> UIImage {
     let size = CGSize(width: 10, height: 10)
     UIGraphicsBeginImageContextWithOptions(size, false, 0)

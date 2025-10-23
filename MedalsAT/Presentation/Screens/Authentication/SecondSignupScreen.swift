@@ -12,13 +12,13 @@ struct SecondSignupScreen: View {
   @State private var password: String = ""
   @State private var confirmPassword: String = ""
   @State private var isSecure: Bool = true
-  
+
   var body: some View {
     VStack(alignment: .leading) {
       Text("Contraseña")
         .font(.subheadline)
         .padding(.bottom, 5)
-      
+
       HStack {
         if isSecure {
           SecureField("Ingresa tu contraseña", text: $password)
@@ -36,11 +36,11 @@ struct SecondSignupScreen: View {
       .background(Color(.secondarySystemBackground))
       .cornerRadius(5)
       .padding(.bottom, 20)
-      
+
       Text("Confirma Contraseña")
         .font(.subheadline)
         .padding(.bottom, 5)
-      
+
       HStack {
         if isSecure {
           SecureField("Confirma tu contraseña", text: $confirmPassword)
@@ -57,7 +57,7 @@ struct SecondSignupScreen: View {
       .padding()
       .background(Color(.secondarySystemBackground))
       .cornerRadius(5)
-      
+
       Button(action: {
         coordinator.popToRoot()
       }) {

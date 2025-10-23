@@ -25,7 +25,7 @@ struct TabsScreen: View {
         HomeScreen(modelContext: container.mainContext)
           .modelContainer(container)
       }
-      
+
       Tab("Configuracion", systemImage: "gear") {
         SettingsScreen()
       }
@@ -34,7 +34,7 @@ struct TabsScreen: View {
   }
 }
 
-//MARK: - helper to set saved theme
+// MARK: - helper to set saved theme
 
 extension View {
   func setAppearanceTheme() -> some View {
@@ -43,14 +43,14 @@ extension View {
 }
 
 struct AppearanceThemeViewModifier: ViewModifier {
-  
+
   @AppStorage(UserDefaultsKeys.appearanceTheme) private var appearanceTheme: AppearanceTheme = .system
-  
+
   func body(content: Content) -> some View {
     content
       .preferredColorScheme(scheme())
   }
-  
+
   func scheme() -> ColorScheme? {
     switch appearanceTheme {
     case .dark: return .dark
@@ -63,4 +63,3 @@ struct AppearanceThemeViewModifier: ViewModifier {
 #Preview {
   TabsScreen()
 }
-
