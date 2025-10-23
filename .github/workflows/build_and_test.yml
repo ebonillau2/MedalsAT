@@ -20,21 +20,17 @@ jobs:
 
       - name: Clean and setup
         run: |
-          cd MedalsAT/
           rm -rf ~/Library/Developer/Xcode/DerivedData/*
           rm -f Package.resolved
 
       - name: Resolve dependencies
         run: |
-          cd MedalsAT/
           xcodebuild -resolvePackageDependencies -scheme MedalsAT
 
       - name: Build project (test if build works)
         run: |
-          cd MedalsAT/
           xcodebuild -scheme MedalsAT -destination 'platform=iOS Simulator,name=iPhone 15' build
 
       - name: Run tests with fastlane
         run: |
-          cd MedalsAT/
           fastlane tests --verbose
