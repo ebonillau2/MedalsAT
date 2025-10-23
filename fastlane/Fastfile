@@ -18,6 +18,21 @@ default_platform(:ios)
 platform :ios do
   desc "Executes unit tests"
   lane :tests do
-    run_tests(scheme: "MedalsAT")
+  # Common scheme names
+  possible_schemes = [
+    "MedalsAT"
+  ]
+  
+  # Try each scheme until one works
+  possible_schemes.each do |scheme|
+    begin
+      UI.message("Trying scheme: #{scheme}")
+      scan(
+        scheme: scheme,
+        project: "MedalsAT.xcodeproj",
+        device: "iPhone 17 Pro"
+      )
+     end
+    end
   end
 end
