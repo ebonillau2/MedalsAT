@@ -8,15 +8,33 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Select Xcode version
-        run: sudo xcode-select -s /Applications/Xcode_26.0.1.app
+        run: sudo xcode-select -s /Applications/Xcode.app
 
-      - name: Set up Ryby
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.2
 
       - name: Install fastlane
         run: gem install fastlane
-        
-      - name: Run tests
-        run: fastlane tests
+
+      - name: Clean and setup
+        run: |
+          cd MedalsAT/
+          rm -rf ~/Library/Developer/Xcode/DerivedData/*
+          rm -f Package.resolved
+
+      - name: Resolve dependencies
+        run: |
+          cd MedalsAT/
+          xcodebuild -resolvePackageDependencies -scheme MedalsAT
+
+      - name: Build project (test if build works)
+        run: |
+          cd MedalsAT/
+          xcodebuild -scheme MedalsAT -destination 'platform=iOS Simulator,name=iPhone 15' build
+
+      - name: Run tests with fastlane
+        run: |
+          cd MedalsAT/
+          fastlane tests --verbose

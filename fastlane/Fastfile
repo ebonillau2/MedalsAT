@@ -18,19 +18,6 @@ default_platform(:ios)
 platform :ios do
   desc "Executes unit tests"
   lane :tests do
-    # Clean derived data
-    clear_derived_data
-    
-    # Run tests with CI-specific settings
-    run_tests(
-      scheme: "MedalsAT",
-      clean: true,
-      derived_data_path: "./derived_data",
-      output_directory: "./test_results",
-      build_for_testing: true,
-      disable_package_automatic_updates: false,
-      skip_package_dependencies_resolution: false,
-      xcargs: "CI=true"
-    )
+    run_tests(scheme: "MedalsAT")
   end
 end
