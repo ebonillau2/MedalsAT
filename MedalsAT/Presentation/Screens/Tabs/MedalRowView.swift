@@ -21,10 +21,10 @@ struct MedalRowView: View {
         HStack {
           Text("LVL \(medal.level)")
             .foregroundStyle(Color.black)
-          ProgressView(value: Float(medal.points),
-                       total: 100)
-            .progressViewStyle(BarProgressStyle(color: Color(hex: medal.progressColor), height: 20.0))
-            .clipShape(RoundedRectangle(cornerRadius: 4))
+          CustomAnimatedProgressView(value: Double(medal.points),
+                                     total: 100,
+                                     color: Color(hex: medal.progressColor),
+                                     height: CGFloat(20))
         }
         .frame(height: 20)
       }
@@ -56,6 +56,36 @@ struct MedalRowView: View {
         }
       }
     }
+  }
+}
+
+struct CustomAnimatedProgressView: View {
+  let value: Double
+  let total: Double
+  let color: Color
+  let height: CGFloat
+
+  private var progress: Double {
+    value / total
+  }
+
+  var body: some View {
+    GeometryReader { geometry in
+      ZStack(alignment: .leading) {
+        // Background
+        Rectangle()
+          .foregroundColor(color.opacity(0.3))
+          .frame(height: height)
+
+        // Progress fill with animation
+        Rectangle()
+          .foregroundColor(color)
+          .frame(width: geometry.size.width * progress, height: height)
+          .animation(.spring(response: 0.6, dampingFraction: 0.8), value: progress)
+      }
+      .cornerRadius(height / 2)
+    }
+    .frame(height: height)
   }
 }
 
