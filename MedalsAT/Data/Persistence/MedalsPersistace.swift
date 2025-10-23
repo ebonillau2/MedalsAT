@@ -9,5 +9,6 @@ import Foundation
 import SwiftData
 
 protocol MedalsPersistace: Sendable {
-    func fetchMedals(context: ModelContext) -> [Medal]
+  func fetchMedals(context: ModelContext) -> [Medal]
+  func removeAllMedals(context: ModelContext)
 }
