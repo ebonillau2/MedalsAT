@@ -16,25 +16,36 @@ final class MedalViewModel: ObservableObject {
   @Published var showToast: Bool = false
 
   var modelContext: ModelContext
-  var persistace: MedalsPersistace
+  var persistence: MedalsPersistence
   private var updateTask: Task<Void, Never>?
-  private var tapCount = 0
+  private(set) var tapCount = 0
+  private(set) var maxIncrementPoints = 20
+
+  // Keep observer tokens so we can remove them correctly
+  private var lifecycleObservers: [NSObjectProtocol] = []
 
   init(modelContext: ModelContext,
-       persistace: MedalsPersistace = MedalsPersistaceImp()) {
+       persistence: MedalsPersistence? = nil) {
     self.modelContext = modelContext
-    self.persistace = persistace
+    // Initialize the persistence implementation on the MainActor to avoid
+    // calling an actor-isolated initializer from a non-isolated default arg.
+    self.persistence = persistence ?? MedalsPersistenceImp()
   }
 
   func startObservingChanges() {
-    medals = persistace.fetchMedals(context: modelContext)
+    if medals.isEmpty {
+      medals = persistence.fetchMedals(context: modelContext)
+    }
     observeAppLifecycle()
     startUpdatingMedals()
   }
 
   private func observeAppLifecycle() {
+    // prevent adding duplicate observers
+    guard lifecycleObservers.isEmpty else { return }
+
     // Call when scene is about to move to the inactive state
-    NotificationCenter.default.addObserver(
+    let willDeactivate = NotificationCenter.default.addObserver(
       forName: UIScene.willDeactivateNotification,
       object: nil,
       queue: .main
@@ -46,7 +57,7 @@ final class MedalViewModel: ObservableObject {
     }
 
     // Call when scene becomes active again
-    NotificationCenter.default.addObserver(
+    let didActivate = NotificationCenter.default.addObserver(
       forName: UIScene.didActivateNotification,
       object: nil,
       queue: .main
@@ -56,41 +67,44 @@ final class MedalViewModel: ObservableObject {
         print("didActivateNotification")
       }
     }
+
+    lifecycleObservers.append(contentsOf: [willDeactivate, didActivate])
   }
 
   private func startUpdatingMedals() {
     guard updateTask == nil else { return }
 
-    updateTask = Task {
+    // Run the loop as a Task on the MainActor.
+    updateTask = Task { [weak self] in
       while !Task.isCancelled {
         try? await Task.sleep(for: .seconds(1))
 
-        await MainActor.run {
-          for medal in medals {
-            guard medal.level < medal.maxLevel else { continue }
+        guard let self = self else { break }
 
-            let randomIncrement = Int.random(in: 0...10)
-            medal.points += randomIncrement
+        for medal in self.medals {
+          guard medal.level < medal.maxLevel else { continue }
 
-            if medal.points >= 100 {
-              medal.points = 0
-              medal.level += 1
-              if medal.level > medal.maxLevel {
-                medal.level = medal.maxLevel
-              }
-              try? modelContext.save()
+          let randomIncrement = Int.random(in: 0...maxIncrementPoints)
+          medal.points += randomIncrement
 
-              NotificationCenter.default.post(
-                name: .medalLeveledUp,
-                object: medal.id
-              )
+          if medal.points >= 100 {
+            medal.points = 0
+            medal.level += 1
+            if medal.level > medal.maxLevel {
+              medal.level = medal.maxLevel
             }
+            try? self.modelContext.save()
+
+            NotificationCenter.default.post(
+              name: .medalLeveledUp,
+              object: medal.id
+            )
           }
-          do {
-            try modelContext.save()
-          } catch {
-            print("Error Saving Model \(error.localizedDescription)")
-          }
+        }
+        do {
+          try self.modelContext.save()
+        } catch {
+          print("Error Saving Model \(error.localizedDescription)")
         }
       }
     }
@@ -104,8 +118,9 @@ final class MedalViewModel: ObservableObject {
     }
     tapCount += 1
     if tapCount == 5 {
-      persistace.removeAllMedals(context: modelContext)
-      medals = persistace.fetchMedals(context: modelContext)
+      // These calls are fine on MainActor because this class is @MainActor
+      persistence.removeAllMedals(context: modelContext)
+      medals = persistence.fetchMedals(context: modelContext)
       tapCount = 0
     }
   }
@@ -116,7 +131,15 @@ final class MedalViewModel: ObservableObject {
   }
 
   deinit {
-    NotificationCenter.default.removeObserver(self)
+    Task { @MainActor [weak self] in
+      // Ensure any running update task is cancelled when the view model is deallocated
+      self?.stopUpdatingMedals()
+    }
+    // Remove observers we registered via tokens
+    for token in lifecycleObservers {
+      NotificationCenter.default.removeObserver(token)
+    }
+    lifecycleObservers.removeAll()
   }
 }
 
