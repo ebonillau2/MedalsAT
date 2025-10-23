@@ -52,6 +52,7 @@ struct LoginScreen: View {
         .padding(.vertical, 20)
       }
     }
+    .padding(.horizontal, 30)
   }
 }
 
