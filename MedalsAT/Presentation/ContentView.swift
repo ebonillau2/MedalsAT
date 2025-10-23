@@ -9,14 +9,20 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+  @Environment(\.modelContext) var modelContext
+  @StateObject var viewModel: MedalViewModel
+  
+  init(modelContext: ModelContext) {
+    _viewModel = StateObject(wrappedValue: MedalViewModel(modelContext: modelContext))
+  }
   
   var body: some View {
 
     NavigationView {
       List {
         Section(header: Text("🏅 Medallas")) {
-          ForEach(0..<10) { i in
-            Text("Sample \(i)")
+          ForEach(viewModel.medals) { medal in
+            MedalRowView(medal: medal)
           }
         }
         
@@ -39,6 +45,13 @@ struct ContentView: View {
   }
 }
 
+// Temporary container for preview
+let previewContainer: ModelContainer = {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Medal.self, configurations: config)
+    return container
+}()
+
 #Preview {
-  ContentView()
+  ContentView(modelContext: previewContainer.mainContext)
 }
