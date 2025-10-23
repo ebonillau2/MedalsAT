@@ -17,6 +17,7 @@ final class MedalViewModel: ObservableObject {
   var modelContext: ModelContext
   var persistace: MedalsPersistace
   private var updateTask: Task<Void, Never>? = nil
+  private var tapCount = 0
   
   init(modelContext: ModelContext, persistace: MedalsPersistace = MedalsPersistaceImp()) {
     self.modelContext = modelContext
@@ -27,7 +28,7 @@ final class MedalViewModel: ObservableObject {
   }
   
   private func observeAppLifecycle() {
-    // Call when scene is about to move from the active state to the inactive state
+    // Call when scene is about to move to the inactive state
     NotificationCenter.default.addObserver(
       forName: UIScene.willDeactivateNotification,
       object: nil,
@@ -35,6 +36,7 @@ final class MedalViewModel: ObservableObject {
     ) { [weak self] _ in
       Task { @MainActor [weak self] in
         self?.stopUpdatingMedals()
+        print("willDeactivateNotification")
       }
     }
     
@@ -46,6 +48,7 @@ final class MedalViewModel: ObservableObject {
     ) { [weak self] _ in
       Task { @MainActor [weak self] in
         self?.startUpdatingMedals()
+        print("didActivateNotification")
       }
     }
   }
@@ -78,13 +81,26 @@ final class MedalViewModel: ObservableObject {
               )
             }
           }
-          try? modelContext.save()
+          do {
+            try modelContext.save()
+          } catch {
+            print("Error Saving Model \(error.localizedDescription)")
+          }
         }
       }
     }
   }
   
-  private func stopUpdatingMedals() {
+  func resetDataIfNeeded() {
+    tapCount += 1
+    if tapCount == 5 {
+      persistace.removeAllMedals(context: modelContext)
+      medals = persistace.fetchMedals(context: modelContext)
+      tapCount = 0
+    }
+  }
+  
+  func stopUpdatingMedals() {
     updateTask?.cancel()
     updateTask = nil
   }
