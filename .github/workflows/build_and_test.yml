@@ -19,4 +19,4 @@ jobs:
         run: gem install fastlane
         
       - name: Run tests
-        run: cd MedalsAT/; fastlane tests
+        run: fastlane tests
