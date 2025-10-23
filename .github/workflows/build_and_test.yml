@@ -1,0 +1,22 @@
+name: Build and test
+on: [push]
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v5
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_26.0.1.app
+
+      - name: Set up Ryby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+
+      - name: Install fastlane
+        run: gem install fastlane
+        
+      - name: Run tests
+        run: cd MedalsAT/; fastlane tests
