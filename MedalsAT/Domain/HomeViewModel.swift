@@ -16,24 +16,25 @@ final class MedalViewModel: ObservableObject {
   @Published var showToast: Bool = false
 
   var modelContext: ModelContext
-  var persistace: MedalsPersistace
+  var persistence: MedalsPersistence
   private var updateTask: Task<Void, Never>?
-  private var tapCount = 0
+  private(set) var tapCount = 0
+  private(set) var maxIncrementPoints = 20
 
   // Keep observer tokens so we can remove them correctly
   private var lifecycleObservers: [NSObjectProtocol] = []
 
   init(modelContext: ModelContext,
-       persistace: MedalsPersistace? = nil) {
+       persistence: MedalsPersistence? = nil) {
     self.modelContext = modelContext
     // Initialize the persistence implementation on the MainActor to avoid
     // calling an actor-isolated initializer from a non-isolated default arg.
-    self.persistace = persistace ?? MedalsPersistaceImp()
+    self.persistence = persistence ?? MedalsPersistenceImp()
   }
 
   func startObservingChanges() {
     if medals.isEmpty {
-      medals = persistace.fetchMedals(context: modelContext)
+      medals = persistence.fetchMedals(context: modelContext)
     }
     observeAppLifecycle()
     startUpdatingMedals()
@@ -83,7 +84,7 @@ final class MedalViewModel: ObservableObject {
         for medal in self.medals {
           guard medal.level < medal.maxLevel else { continue }
 
-          let randomIncrement = Int.random(in: 0...10)
+          let randomIncrement = Int.random(in: 0...maxIncrementPoints)
           medal.points += randomIncrement
 
           if medal.points >= 100 {
@@ -118,8 +119,8 @@ final class MedalViewModel: ObservableObject {
     tapCount += 1
     if tapCount == 5 {
       // These calls are fine on MainActor because this class is @MainActor
-      persistace.removeAllMedals(context: modelContext)
-      medals = persistace.fetchMedals(context: modelContext)
+      persistence.removeAllMedals(context: modelContext)
+      medals = persistence.fetchMedals(context: modelContext)
       tapCount = 0
     }
   }
